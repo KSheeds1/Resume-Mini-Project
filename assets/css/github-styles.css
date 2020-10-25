@@ -12,6 +12,10 @@ ul {
   list-style: none;
 }
 
+.ui-menu-color-github {
+    background-color: #008080;
+}
+
 input,
 textarea {
   -webkit-font-smoothing: antialiased;
