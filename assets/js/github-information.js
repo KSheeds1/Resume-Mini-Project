@@ -7,7 +7,7 @@ function userInformationHTML(user) {
         </h2>
         <div class="gh-content">
             <div class="gh-avatar">
-                <a href="${user.html_url} target="_blank>
+                <a href="${user.html_url}" target="_blank>
                     <img src="${user.avatar_url}" width="80" height="80" alt="${user.login}"/>
                 </a>
             </div>
@@ -31,11 +31,14 @@ function fetchGitHubInformation(event) {
          </div>`);
     
     $.when(
-        $.getJSON(`https://api.github.com/users/${username}`)
+        $.getJSON(`https://api.github.com/users/${username}`),
+        $.getJSON(`https://api.github.com/users/${username}/repos`)
     ).then(
-        function(response) {
-            let userData = response;
+        function(firstResponse, secondResponse) {
+            let userData = firstResponse[0];
+            let repoData = secondResponse[0];
             $("#gh-user-data").html(userInformationHTML(userData));
+            $("#gh-repo-data").html(repoInformationHTML(repoData));
         }, function(erroResponse) {
             if (erroResponse.status === 404) {
                 $("#gh-user-data").html(
