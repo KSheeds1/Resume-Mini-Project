@@ -8,5 +8,5 @@ function fecthGitHubInformation(event) {
     $("#gh-user-data").html(
         `<div id= "loader">
              <img src="assets/css/loader.gif" alt="laoding..." />
-         </div>`)
+         </div>`);
 }
